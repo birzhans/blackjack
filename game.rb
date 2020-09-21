@@ -1,13 +1,18 @@
 class Game
-  atrr_reader :player_name
+  attr_reader :player_name
 
   def start
-    print "Enter your name: "
-    self.player_name = gets.chomp
-    puts "Hi, #{player_name}, lets start"
+    ask_name
   end
 
 
   private
 
-  atrr_writer :player_name
+  def ask_name
+    print "Enter your name: "
+    self.player_name = gets.chomp
+    puts "Hi, #{player_name}, lets start"
+  end
+
+  attr_writer :player_name
+end
