@@ -1,12 +1,5 @@
 # blackjack
-Thinknetica Basic Ruby module's project
-
-# Recommendations for project implementation:
-Make the project in a separate repository
-In the process, make a lot of small commits
-First, carefully analyze the task and divide it into subtasks.
-Start by thinking about the object model - what classes will be needed, what they will be responsible for, and how they will be related.
-Start development with the simplest and most understandable section for you
+Thinknetica Basic Ruby module's project.
 
 # Mechanics and rules of the game:
 There is a player (user) and a dealer (controlled by the program).
