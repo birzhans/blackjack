@@ -1,7 +1,7 @@
-# blackjack
+## blackjack
 Thinknetica Basic Ruby module's project.
 
-# Mechanics and rules of the game:
+## Mechanics and rules of the game:
 - There is a player (user) and a dealer (controlled by the program).
 - First, we ask the user for a name and then the game starts.
 - At the beginning of the game the user and the dealer have 100 dollars in the Bank
@@ -10,12 +10,12 @@ Thinknetica Basic Ruby module's project.
 - The user sees the amount of their points. The amount is calculated as follows: from 2 to 10-at the face value of the card, all "pictures" - 10, **ACE-1 or 11, depending on which value is closer to 21 and that does not lead to a loss (the amount is more than 21).**
 - After the hand is dealt, a $ 10 bet is automatically placed in the game's pot from the player and dealer. (The player and dealer have 10 deducted from the pot)
 - After that, the move goes to the user. The user has 3 options to choose from:
-	- Skip it. In this case, the move goes to the dealer (see below)
-	- Add a map. (only if the user is holding 2 cards). In this case, another random card is added to the player, the amount of points is recalculated, and the move goes to the dealer. Only one map can be added.
-	- Open card. The dealer's and player's cards are opened, the player sees the amount of the dealer's points, and the game results are counted (see below).
+	- **Skip it**. In this case, the move goes to the dealer (see below)
+	- **Add a card**. (only if the user is holding 2 cards). In this case, another random card is added to the player, the amount of points is recalculated, and the move goes to the dealer. **Only one card can be added**.
+	- **Open card**. The dealer's and player's cards are opened, the player sees the amount of the dealer's points, and the game results are counted (see below).
 - Dealer's move (controlled by the program, the goal is to win, i.e. to get the amount of points as close as possible to 21). The dealer can:
-	- Skip a move (if the dealer has 17 points or more). The move goes to the player.
-	- Add a map (if the score is less than 17). The dealer gets a new card (closed for the user). After that, the move goes to the player. Only one map can be added.
+	- **Skip a move (if the dealer has 17 points or more)**. The move goes to the player.
+	- **Add a card (if the score is less than 17)**. The dealer gets a new card (closed for the user). After that, the move goes to the player. **Only one card can be added**.
 - Players reveal their cards either when they reach 3 cards each (automatically), or when the user selects the "Open cards"option. After that, the user sees the dealer's cards and the amount of his points, as well as the result of the game (who won and who lost).
 - Counting results:
 	- The player who has a score closer to 21 wins
