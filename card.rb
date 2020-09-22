@@ -1,6 +1,6 @@
 class Card
 
-  attr_reader :card_name
+  attr_reader :card_name, :card_rank, :card_value
 
   RANKS = {
     '2' => 2, '3' => 3, '4' => 4, '5' => 5, '6' => 6,
@@ -13,6 +13,7 @@ class Card
   def initialize
     @card_rank = random_rank
     @card_suit = SUITS[rand(SUITS.size)]
+    @card_value = RANKS[@card_rank]
     @card_name = @card_rank + @card_suit
   end
 

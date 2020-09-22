@@ -12,7 +12,9 @@ class Game
   def start
     ask_name
     card_draw
-    print_cards
+    bet
+    display_game
+    display_moves
   end
 
 
@@ -31,10 +33,23 @@ class Game
     end
   end
 
-  def print_cards
+  def display_game
     self.user.print_cards
-    print "     "
+    print "pts: #{self.user.points}"
+    print " | "
     self.dealer.print_cards
+    print "pts: #{self.dealer.points}"
+  end
+
+  def display_moves
+    puts '1 -> skip'
+    puts '2 -> open cards'
+    puts '3 -> add card' if self.user.cards.size.eql?(2)
+  end
+
+  def bet
+    self.user.cash -= 10
+    self.dealer.cash -= 10
   end
 
   attr_writer :player_name
