@@ -1,8 +1,7 @@
 require_relative 'card'
 
 class Player
-  attr_reader :cash, :points
-  attr_accessor :cards, :points
+  attr_accessor :cards, :points, :cash, :points
 
   def initialize
     @cash = 100
@@ -17,10 +16,6 @@ class Player
     calculate_point(card)
   end
 
-  def print_cards
-    cards.each { |card| print "#{card.card_name } "}
-  end
-
   def calculate_point(card)
     if card.card_rank.eql?('A')
       if self.points < 11
@@ -32,8 +27,4 @@ class Player
       self.points += card.card_value
     end
   end
-
-  protected
-
-  attr_writer :cash
 end
