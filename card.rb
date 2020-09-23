@@ -1,26 +1,21 @@
+# frozen_string_literal: true
+
+require_relative 'constants'
+
 class Card
+  attr_reader :rank, :value, :suit
 
-  attr_reader :card_name, :card_rank, :card_value
-
-  RANKS = {
-    '2' => 2, '3' => 3, '4' => 4, '5' => 5, '6' => 6,
-    '7' => 7, '8' => 8, '9' => 9, '10' => 10, 'J' => 10,
-    'Q' => 10, 'K' => 10, 'A' => 1
-  }
-
-  SUITS = ['+', '<3', '^', '<>']
-
-  def initialize
-    @card_rank = random_rank
-    @card_suit = SUITS[rand(SUITS.size)]
-    @card_value = RANKS[@card_rank]
-    @card_name = @card_rank + @card_suit
+  def initialize(rank, value, suit)
+    @rank = rank
+    @value = value
+    @suit = suit
   end
 
-  private
+  def to_s
+    rank + suit
+  end
 
-  def random_rank
-    ranks_keys = RANKS.keys
-    ranks_keys[rand(ranks_keys.size)]
+  def same?(card)
+    rank.eql?(card.rank) && suit.eql?(card.suit)
   end
 end

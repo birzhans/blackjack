@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require_relative 'player'
 
 class User < Player
-  def print_cards
-    print 'You: '
-    cards.each { |card| print "#{card.card_name } "}
-    print "pts: #{self.points}"
+  attr_accessor :user_name
+
+  def display
+    print "User: #{cash}$ #{points} pts, #{display_cards}"
   end
 end
