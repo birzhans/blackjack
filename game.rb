@@ -1,23 +1,23 @@
 # frozen_string_literal: true
-
+require_relative 'interface'
 require_relative 'user'
 require_relative 'dealer'
 
 class Game
   BET = 10
   MAX_POINTS = 21
-  OPTIONS = {
-    '1': :dealer_move, '2': :open_cards, '3': :add_card
-  }.freeze
+
+  attr_reader :interface
 
   def initialize
+    @interface = Interface.new
     @user = User.new
     @dealer = Dealer.new
     @user_continue = true
   end
 
   def play
-    user_name
+    interface.hello
     first_bet
     moves
   end
@@ -26,12 +26,6 @@ class Game
 
   attr_accessor :user_continue
   attr_reader :user, :dealer
-
-  def user_name
-    print 'Enter your name: '
-    user_name = gets.chomp
-    puts "Hello, #{user_name}!"
-  end
 
   def reset
     dealer.new_deck
@@ -51,10 +45,10 @@ class Game
 
   def moves
     loop do
-      display_game
       break if no_cash?
+      interface.display_game(user, dealer)
 
-      move = user_move(can_add?)
+      move = interface.user_move(can_add?)
       next_move = send(move)
 
       dealer_move if next_move.eql?(:dealer_move)
@@ -67,40 +61,27 @@ class Game
     end
   end
 
-  def display_game(dealer_show = false)
-    puts "#{user.display}  |  #{dealer.display(dealer_show)}"
-  end
-
-  def user_move(can_add)
-    puts '1 -> skip'
-    puts '2 -> open cards'
-    puts '3 -> add card' if can_add
-    move = BET
-    move = gets.chomp.to_sym until OPTIONS.keys.include?(move) || (move.eql?('3') && !can_add)
-    OPTIONS[move]
-  end
-
   def add_card
     user.get_card(dealer.draw_card)
-    display_game
+    interface.display_game(user, dealer)
     :dealer_move
   end
 
   def dealer_move
     dealer.get_card(dealer.draw_card) if dealer.points < 17 && dealer.num_of_cards < 3
     print '(Dealer move) '
-    display_game
+    interface.display_game(user, dealer)
   end
 
   def open_cards
-    display_game(true)
+    interface.display_game(user, dealer, true)
     winner
     play_again?
   end
 
   def winner
     if tie?
-      puts "It's a tie!"
+      interface.tie
       user.change_balance(BET)
       dealer.change_balance(BET)
     end
@@ -108,10 +89,10 @@ class Game
     winner = over_points
     winner = check_winner if winner.nil?
     if winner.eql?(user)
-      puts 'You won!'
+      interface.user_won
       user.change_balance(2 * BET)
     else
-      puts 'You lost'
+      interface.user_lost
       dealer.change_balance(2 * BET)
     end
   end
@@ -151,13 +132,13 @@ class Game
   end
 
   def bankrupt
-    puts 'You have no money!' unless user.cash.positive?
+    interface.no_money unless user.cash.positive?
     dealer.change_balance(100) unless dealer.cash.positive?
     play_again?
   end
 
   def play_again?
-    puts 'Do you want to play again? (y/n)'
+    interface.ask_to_play
     choice = gets.chomp
     if choice.eql?('y')
       self.user_continue = true
