@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require_relative 'interface'
 require_relative 'user'
 require_relative 'dealer'
@@ -46,6 +47,7 @@ class Game
   def moves
     loop do
       break if no_cash?
+
       interface.display_game(user, dealer)
 
       move = interface.user_move(can_add?)
