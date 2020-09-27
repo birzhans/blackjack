@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class Interface
   OPTIONS = {
     '1': :dealer_move, '2': :open_cards, '3': :add_card
   }.freeze
 
   def hello
-    puts "Welcome to the blackjack game."
+    puts 'Welcome to the blackjack game.'
     user_name
   end
 
