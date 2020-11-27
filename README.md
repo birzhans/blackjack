@@ -21,5 +21,4 @@ Thinknetica Basic Ruby module's project.
 	- The player who has a score closer to 21 wins
 	- If a player has more than 21 points, they lose
 	- If the player and dealer have the same amount of points, then a draw is declared and the money from the Bank is returned to the players
-	- The amount from the game Bank goes to the winner
 - After the game ends, we ask the user if they want to play again. If Yes, then the game starts again with the distribution of cards, if not, then we finish the work.
